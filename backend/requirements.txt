@@ -1,3 +1,29 @@
-fastapi
-uvicorn
-pydantic
+# --- Framework principal ---
+fastapi==0.115.0
+uvicorn==0.30.3
+
+# --- Base de datos (ORM) ---
+SQLAlchemy==2.0.25
+
+# --- Variables de entorno ---
+python-dotenv==1.0.1
+
+# --- Autenticación y seguridad (JWT) ---
+PyJWT==2.9.0
+passlib[bcrypt]==1.7.4
+
+# --- Envío de correos ---
+email-validator==2.1.1
+
+# --- Utilidades ---
+pytz==2024.1
+
+# --- Cliente para PostgreSQL (Render usa PostgreSQL por defecto) ---
+psycopg2-binary==2.9.9
+
+# --- Validaciones con Pydantic ---
+pydantic==2.7.0
+pydantic-settings==2.2.1
+
+# --- Dependencia opcional: si usas formularios (upload/login con HTML forms) ---
+python-multipart==0.0.9
