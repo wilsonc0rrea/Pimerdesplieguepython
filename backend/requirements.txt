@@ -22,7 +22,7 @@ pytz==2024.1
 psycopg2-binary==2.9.9
 
 # --- Validaciones con Pydantic ---
-pydantic==2.7.0
+pydantic==2.11.7
 pydantic-settings==2.2.1
 
 # --- Dependencia opcional: si usas formularios (upload/login con HTML forms) ---
