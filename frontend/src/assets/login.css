@@ -1,0 +1,167 @@
+/*.login-container {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  align-items: center;*/
+/*  min-height: 100vh;*/
+/*  !*background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);*!*/
+/*  background-image: url('/src/assets/image/imgtruck3.jpg');*/
+/*  background-repeat: no-repeat;*/
+/*  background-size: cover;   !* Ajusta la imagen al 100% del contenedor *!*/
+/*  background-position: center; !* Centra la imagen *!*/
+/*}*/
+
+/*.login-card {*/
+/*  background: white;*/
+/*  padding: 2rem;*/
+/*  border-radius: 1rem;*/
+/*  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);*/
+/*  width: 100%;*/
+/*  max-width: 400px;*/
+/*  text-align: center;*/
+/*}*/
+
+/*.login-card h2 {*/
+/*  font-size: 2rem;*/
+/*  color: #333;*/
+/*  margin-bottom: 1rem;*/
+/*}*/
+
+/*.login-card p {*/
+/*  color: #666;*/
+/*  margin-bottom: 2rem;*/
+/*}*/
+
+/*.login-card input {*/
+/*  width: 100%;*/
+/*  padding: 0.75rem;*/
+/*  margin-bottom: 1rem;*/
+/*  border: 2px solid #e2e8f0;*/
+/*  border-radius: 0.5rem;*/
+/*  font-size: 1rem;*/
+/*  transition: border-color 0.3s;*/
+/*}*/
+
+/*.login-card input:focus {*/
+/*  outline: none;*/
+/*  border-color: #334155;*/
+/*}*/
+
+/*.login-card button {*/
+/*  width: 100%;*/
+/*  padding: 0.75rem;*/
+/*  background: #334155;*/
+/*  color: white;*/
+/*  border: none;*/
+/*  border-radius: 0.5rem;*/
+/*  font-size: 1rem;*/
+/*  font-weight: 600;*/
+/*  cursor: pointer;*/
+/*  transition: background 0.3s;*/
+/*  box-shadow: 0 4px 6px rgba(0,0,0,0.1);*/
+/*}*/
+
+/*.login-card button:hover {*/
+/*  background: #3182ce;*/
+/*}*/
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('/src/assets/image/imgtruck3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  /* Oscurecer ligeramente la imagen para dar más contraste */
+  position: relative;
+}
+
+.login-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35); /* capa semitransparente */
+  backdrop-filter: blur(2px);       /* ligero desenfoque del fondo */
+  z-index: 0;
+}
+
+.login-card {
+  position: relative;
+  z-index: 1; /* por encima del overlay */
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+/* Efecto suave al pasar el mouse (solo en pantallas grandes) */
+@media (hover: hover) and (min-width: 768px) {
+  .login-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Inputs y botones consistentes */
+.login-card input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.login-card button {
+  width: 100%;
+  background: linear-gradient(135deg, #334155, #1e40af);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.login-card button:hover {
+  background: linear-gradient(135deg, #1e3a8a, #1d4ed8);
+}
+
+/* Links debajo */
+.login-card a {
+  display: block;
+  color: #1d4ed8;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.login-card a:hover {
+  text-decoration: underline;
+}
+
+/* 📱 Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+  .login-card {
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    max-width: 80%;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    transform: scale(0.95); /* reduce tamaño suavemente */
+  }
+
+  .login-card input,
+  .login-card button {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+}

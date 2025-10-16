@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" href="/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Reportes diarios</title>
+
+    <!-- ✅ Estilos globales para fondo agradable -->
+    <style>
+
+        /*Es del menubar par dejarlo fijo */
+        .layout-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1100; /* Asegura que esté encima de todo */
+        }
+
+        .custom-menubar :deep(.p-menubar) {
+            /* Opcional: ajusta fondo, sombra, etc. */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .dashboard-content {
+            margin-top: 100px; /* Ajusta según la altura real del menú */
+            /* Si usas padding en body o layout global, ajusta aquí */
+        }
+
+        body {
+            background: #ADADAD;
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        .input-button-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .form-inline {
+            width: 100%;
+        }
+
+        .form-button {
+            background: #374151;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            height: 40px;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /*.form-wrapper {*/
+        /*    background: #fff;*/
+        /*    border-radius: 6px;*/
+        /*    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);*/
+        /*    padding: 2rem;*/
+        /*}*/
+        .form-wrapper {
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%; /* ← Añade esto si no está */
+            max-width: 1500px; /* opcional: límite en escritorio */
+            margin: 0 auto; /* centrar en escritorio */
+        }
+
+
+        .form-title {
+            color: #000000;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-grid {
+            width: 100%;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center; /* ✅ Alinea verticalmente */
+            gap: 1rem; /* ✅ Espacio entre elementos */
+            flex-wrap: wrap; /* ✅ Responsive: se apilan en móvil */
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #000000;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+
+        /*---- Para poder tener texto grande en el dashboard ----*/
+        .text-ultra-large {
+            font-size: 3rem; /* o 48px */
+            font-weight: 700;
+            color: #374151;
+            margin-top: 0.5rem;
+        }
+
+        /* Label invisible para mantener alineación vertical */
+        .form-label.invisible {
+            visibility: hidden;
+            height: 1rem; /* Mantiene el espacio del label */
+        }
+
+        /*.form-row {*/
+        /*    display: flex;*/
+        /*    align-items: flex-start; !* Alinea al inicio (para que labels queden arriba) *!*/
+        /*    gap: 1rem; !* Espacio entre campos *!*/
+        /*    flex-wrap: wrap; !* Responsive: se apilan en móvil *!*/
+        /*    margin-bottom: 20px;*/
+        /*}*/
+        /*.form-field {*/
+        /*    flex: 1;*/
+        /*    min-width: 300px; !* Ancho mínimo para que no se achaten *!*/
+        /*}*/
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .form-field {
+            /* Elimina min-width: 300px */
+            width: 100%;
+        }
+
+        .form-field label {
+            color: #000000;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.025em;
+        }
+
+        .p-inputtext,
+        .p-dropdown {
+            border: 2px solid #000000;
+            transition: all 0.2s ease-in-out;
+        }
+
+
+        .p-inputtext:focus,
+        .p-inputnumber:focus,
+        .p-dropdown:focus {
+            border-color: #374151;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .p-button {
+            font-weight: 600;
+            letter-spacing: 0.025em;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            height: 42px;
+        }
+
+        .p-dropdown,
+        .p-inputtext,
+        .p-autocomplete,
+        .p-inputnumber,
+        .p-password {
+            width: 100% !important;
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease-in-out;
+            box-sizing: border-box;
+        }
+
+        .form-field input,
+        .form-field autocomplete,
+        .form-field inputnumber,
+        .form-field button {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Texto negro en el cuerpo de la tabla */
+        .p-datatable .p-datatable-tbody td {
+            color: #000000 !important;
+            font-weight: 500;
+        }
+
+        /* Aplica text-align: center al input real dentro de InputText */
+        :deep(.centrado input) {
+            text-align: center !important;
+        }
+
+        /* Opcional: también centra el placeholder (aunque ya lo hace por herencia) */
+        :deep(.centrado input::placeholder) {
+            text-align: center;
+        }
+
+        /* ======================
+           🌞 DATATABLE - ESTILO CÁLIDO ALTERNADO + HOVER
+           ====================== */
+
+        .p-datatable {
+            font-family: 'Inter', sans-serif;
+            border: 1px solid #000000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Bordes en las celdas (th y td) */
+
+
+        /* Encabezado (fondo oscuro, texto blanco) */
+        .p-datatable .p-datatable-thead th {
+            background: #2c3e50; /* Azul oscuro elegante */
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            letter-spacing: 0.025em;
+            border: none;
+
+        }
+
+        /*---- Iconos grandes de los datatable editar,actualizar,eliminar -----*/
+        .icon-lg {
+            font-size: 1.5rem; /* o 24px, 2rem, etc. */
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #dbeafe;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-xl {
+            font-size: 1.7rem;
+            width: 32px;
+            height: 32px;
+            color: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-card-xl {
+            font-size: 4rem;
+        }
+
+        /*!* Filas pares (color cálido claro) *!*/
+        /*.p-datatable .p-datatable-tbody tr:nth-child(even) {*/
+        /*    background: #e0e0e0; !* Amarillo cálido suave *!*/
+        /*    color: #1f2937;*/
+        /*}*/
+
+        /*-- Es para las modales --*/
+
+
+        /*-- Para abrir swatalert con modal --*/
+        .swal-overlay-high {
+            z-index: 99999 !important;
+        }
+
+        /* Filas impares (blanco o casi blanco) */
+        .p-datatable .p-datatable-tbody tr:nth-child(odd) {
+            background: #e0e0e0;
+            color: #1f2937;
+        }
+
+        /* Bordes verticales entre columnas */
+        .p-datatable .p-datatable-tbody td,
+        .p-datatable .p-datatable-thead th {
+            border-right: 1px solid var(--surface-d); /* Usa el color del tema de PrimeVue */
+        }
+
+        /* Opcional: quitar el borde derecho de la última columna */
+        .p-datatable .p-datatable-tbody td:last-child,
+        .p-datatable .p-datatable-thead th:last-child {
+            border-right: none;
+        }
+
+        /* Si quieres también bordes horizontales (entre filas) */
+        .p-datatable .p-datatable-tbody td {
+            border-bottom: 1px solid var(--surface-d);
+        }
+
+        /* Hover: color cálido saturado */
+        .p-datatable .p-datatable-tbody tr:hover td {
+            background: #1E7B87 !important; /* Naranja cálido vibrante */
+            color: #e0e0e0 !important;
+            transition: background 0.2s ease;
+        }
+
+
+        /* Ajustar tamaño del botón dropdown */
+        .p-autocomplete-dropdown {
+            width: 3rem !important; /* ancho del botón */
+            height: 3rem !important; /* alto */
+            padding: 0 !important;
+            background: #2c3e50;
+        }
+
+        .p-autocomplete-dropdown .pi {
+            font-size: 0.9rem !important; /* tamaño del ícono */
+        }
+
+        /*---- Para dar color a Menubar------- */
+        /* En tu componente o en un archivo global (ej: styles/menu.css) */
+        .p-menubar .p-menuitem-link {
+            /* Transición suave para todos los cambios */
+            transition: background-color 0.2s ease,
+            color 0.2s ease,
+            padding-left 0.2s ease;
+            border-radius: 6px;
+            margin: 0 4px;
+        }
+
+        /* Hover suave y moderno */
+        .p-menubar .p-menuitem-link:hover {
+            background-color: rgba(55, 65, 81, 0.08); /* gris suave (tailwind gray-700 @ 8%) */
+            color: #1e293b; /* gris oscuro (tailwind slate-800) */
+            padding-left: 12px; /* efecto de "deslizamiento" sutil */
+        }
+
+        /* Estado activo (página actual) */
+        .p-menubar .p-menuitem-link.p-highlight {
+            background-color: rgba(59, 130, 246, 0.15); /* azul suave (tailwind blue-500 @ 15%) */
+            color: #3b82f6; /* azul primario */
+            font-weight: 600;
+        }
+
+        /* Hover en estado activo (mejor UX) */
+        .p-menubar .p-menuitem-link.p-highlight:hover {
+            background-color: rgba(59, 130, 246, 0.2);
+        }
+
+        /*---- Para poder alinear textos ----*/
+        .text-right {
+            text-align: right !important;
+        }
+
+        .text-left {
+            text-align: left !important;
+        }
+
+        .text-center {
+            text-align: center !important;
+        }
+
+        /* RESPONSIVE: en pantallas pequeñas cambia a 2x2 */
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* RESPONSIVE: en móvil, 1 por fila */
+        @media (max-width: 424px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        #app.mounted {
+            opacity: 1;
+        }
+
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+
+
+</head>
+<body>
+<!-- ✅ Pantalla de carga (opcional) -->
+<div id="app">
+</div>
+
+<script type="module" src="/src/main.ts"></script>
+
+<!-- ✅ Script para quitar pantalla de carga cuando Vue esté listo -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Cuando Vue monte la app, quitamos el mensaje de carga
+        const app = document.getElementById('app')
+        // Vue montará su contenido aquí y reemplazará lo de dentro
+        // Pero si quieres un efecto de fade-in, puedes agregar una clase
+        // cuando Vue esté listo (ver abajo cómo hacerlo desde main.ts)
+    })
+</script>
+</body>
+</html>
