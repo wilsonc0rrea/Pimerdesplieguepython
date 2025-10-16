@@ -1,29 +1,48 @@
-# --- Framework principal ---
-fastapi==0.115.0
-uvicorn==0.30.3
+# === Framework principal ===
+fastapi==0.116.1           # Framework moderno para construir APIs rápidas con Python y Pydantic.
+starlette==0.47.3          # Framework base sobre el que está construido FastAPI (maneja rutas y middlewares).
+uvicorn==0.35.0            # Servidor ASGI rápido y ligero usado para ejecutar aplicaciones FastAPI.
 
-# --- Base de datos (ORM) ---
-SQLAlchemy==2.0.25
+# === Tipos y validación de datos ===
+pydantic==2.11.7           # Validación de datos y definición de modelos (FastAPI depende de él).
+pydantic-core==2.33.2      # Núcleo optimizado en Rust que usa Pydantic para validar datos.
+annotated-types==0.7.0     # Extensiones de tipado utilizadas por Pydantic para anotaciones avanzadas.
+typing-extensions==4.15.0  # Compatibilidad de nuevas características de tipado en versiones anteriores de Python.
+typing-inspection==0.4.1   # Utilidad para inspeccionar tipos (usado por algunas librerías que validan datos).
 
-# --- Variables de entorno ---
-python-dotenv==1.0.1
+# === Base de datos ===
+SQLAlchemy==2.0.43         # ORM para manejar la base de datos con Python (crea modelos, relaciones y consultas).
+greenlet==3.2.4            # Soporte de corrutinas utilizado internamente por SQLAlchemy.
+psycopg2-binary==2.9.10    # Controlador para conectarse a bases de datos PostgreSQL.
+PyMySQL==1.1.2             # Controlador alternativo para conectarse a bases de datos MySQL/MariaDB (si lo necesitas).
+pytz==2025.2               # Manejo de zonas horarias (útil en timestamps o auditorías).
 
-# --- Autenticación y seguridad (JWT) ---
-PyJWT==2.9.0
-passlib[bcrypt]==1.7.4
+# === Seguridad y autenticación ===
+PyJWT==2.10.1              # Generación y verificación de tokens JWT (autenticación segura de usuarios).
+passlib==1.7.4             # Librería para encriptar contraseñas (hash con bcrypt, sha256, etc).
+argon2-cffi==25.1.0        # Algoritmo de hash más seguro que bcrypt (opcional).
+argon2-cffi-bindings==25.1.0 # Complementos C para mejorar el rendimiento de argon2-cffi.
 
-# --- Envío de correos ---
-email-validator==2.1.1
+# === Manejo de formularios y archivos ===
+python-multipart==0.0.9    # Soporte para procesar formularios tipo multipart/form-data (subida de archivos).
+email-validator==2.3.0     # Verifica direcciones de correo electrónico válidas (usado por Pydantic y FastAPI).
 
-# --- Utilidades ---
-pytz==2024.1
+# === Variables de entorno y configuración ===
+python-dotenv==1.1.1       # Carga variables del archivo .env (como claves secretas o credenciales DB).
+pydantic-settings==2.3.4   # Gestión estructurada de configuración a partir de variables de entorno.
 
-# --- Cliente para PostgreSQL (Render usa PostgreSQL por defecto) ---
-psycopg2-binary==2.9.9
+# === Utilidades y dependencias de soporte ===
+anyio==4.10.0              # Abstracción de concurrencia usada por Starlette y FastAPI (maneja async).
+h11==0.16.0                # Implementación HTTP/1.1 utilizada por Uvicorn.
+click==8.2.1               # Permite construir comandos CLI (usado por Uvicorn y otras herramientas).
+colorama==0.4.6            # Colores en la terminal (para logs más legibles).
+sniffio==1.3.1             # Detecta si el contexto actual es asíncrono (necesario para async/await).
+cffi==2.0.0                # Interfaz para interactuar con librerías en C (requerido por argon2 y psycopg2).
+pycparser==2.22            # Analizador C que utiliza cffi para compilar bindings.
 
-# --- Validaciones con Pydantic ---
-pydantic==2.11.7
-pydantic-settings==2.2.1
+# === Red y DNS ===
+dnspython==2.8.0           # Manejo avanzado de DNS (usado por email-validator para verificar dominios).
+idna==3.10                 # Soporte de nombres de dominio internacionalizados (IDN).
 
-# --- Dependencia opcional: si usas formularios (upload/login con HTML forms) ---
-python-multipart==0.0.9
+# === Mantenimiento y gestión del entorno ===
+pip==25.2                  # Gestor de paquetes Python (se incluye para asegurar versión estable en Render).
