@@ -37,6 +37,7 @@ const auth = useAuthStore()
 const router = useRouter()
 const menuItems = ref([])
 const URI_ROOT = import.meta.env.VITE_API_URL
+console.log(URI_ROOT)
 // const {filtrarMenu} = useMenu();
 const menuLoaded = ref(false) // 👈 Bandera: ¿menú listo?
 const processedMenu = ref([])

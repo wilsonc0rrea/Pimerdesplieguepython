@@ -698,51 +698,6 @@ async def crear_ingresos(ingreso: schemasingresos.IngresosCreate, db: Session = 
         raise HTTPException(status_code=500, detail=f"Error en el servidor: {str(e)}")
 
 
-@app.post("/api/creaingresos", response_model=schemasingresos.IngresosResponse)
-async def crear_ingresos(ingreso: schemasingresos.IngresosCreate, db: Session = Depends(get_db)):
-    try:
-        # Crear
-        new_ingreso = models.Ingresos(
-            ingreso_id=str(uuid.uuid4()),
-            concepto=egreso.concepto,
-            valor=egreso.valor,
-            usuario_id=egreso.usuario_id,
-            cuentadestino_id=egreso.cuentadestino_id,
-            created_at=datetime.now(colombia_tz),
-            updated_at=datetime.now(colombia_tz)  # ¡Corregido! Era solo "datetime"
-        )
-        db.add(new_ingreso)
-        db.commit()
-        db.refresh(new_ingreso)
-        ingresosID = new_ingreso.ingreso_id
-
-        new_saldos = models.Saldosiniciales(
-            saldo_id=str(uuid.uuid4()),
-            saldo=0,
-            debe=0,
-            haber=ingreso.valor,
-            cuentadestino_id=ingreso.cuentadestino_id,
-            egreso_id=ingresosID,
-            observacion=ingreso.concepto,
-            usuario_id=ingreso.usuario_id,
-            created_at=datetime.now(colombia_tz),
-            updated_at=datetime.now(colombia_tz)
-        )
-        db.add(new_saldos)
-        db.commit()
-        db.refresh(new_saldos)
-
-        return {
-            "message": f"Ingreso '{new_ingreso.concepto}' creado correctamente",
-            "ingresos": new_ingreso
-        }
-
-    except HTTPException:
-        raise  # Re-lanza el error para que FastAPI lo maneje
-    except Exception as e:
-        db.rollback()
-        raise HTTPException(status_code=500, detail=f"Error en el servidor: {str(e)}")
-
 
 @app.post("/api/crearsaldos", response_model=schemassaldos.SaldosResponse)
 async def crear_saldos(saldo: schemassaldos.SaldosCreate, db: Session = Depends(get_db)):
