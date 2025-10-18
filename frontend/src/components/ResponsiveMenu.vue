@@ -4,7 +4,7 @@
       <!-- Logo -->
       <template #start>
         <RouterLink to="/" class="logo-section">
-<!--          <img :src="logo" alt="Logo" class="logo-img" />-->
+          <!--          <img :src="logo" alt="Logo" class="logo-img" />-->
           <span class="app-name"></span>
         </RouterLink>
       </template>
@@ -12,7 +12,7 @@
       <!-- Usuario -->
       <template #end>
         <div class="user-profile">
-          <img :src="user.avatar" alt="avatar" class="user-avatar" />
+          <img :src="user.avatar" alt="avatar" class="user-avatar"/>
           <div class="user-info">
             <span class="user-name">{{ user.name }}</span>
             <span class="user-role">{{ user.role }}</span>
@@ -26,7 +26,7 @@
 <script setup lang="ts">
 // @ts-nocheck
 
-import {ref, onMounted, computed, watch,watchEffect} from "vue"
+import {ref, onMounted, computed, watch, watchEffect} from "vue"
 import {useMenu} from '@/composables/useMenu';
 import {useRouter} from "vue-router"
 import logo from "@/assets/image/logo/mLogo.png"
@@ -37,7 +37,7 @@ const auth = useAuthStore()
 const router = useRouter()
 const menuItems = ref([])
 const URI_ROOT = import.meta.env.VITE_API_URL
-console.log(URI_ROOT)
+console.log("ProbandoURI " + URI_ROOT)
 // const {filtrarMenu} = useMenu();
 const menuLoaded = ref(false) // 👈 Bandera: ¿menú listo?
 const processedMenu = ref([])
@@ -90,7 +90,7 @@ watch(
       // processedMenu.value = []
     }
   },
-  { deep: true, immediate: true }
+  {deep: true, immediate: true}
 )
 
 
@@ -116,7 +116,7 @@ function tienePermiso(modulo, permisos) {
 }
 
 
-function filtrarMenu(menu,permisos) {
+function filtrarMenu(menu, permisos) {
   return menu
     .map(item => {
       const modulo = item.modulo
@@ -129,7 +129,7 @@ function filtrarMenu(menu,permisos) {
       // return puedeVer ? item : null
       if (item.items && item.items.length > 0) {
         const subItems = filtrarMenu(item.items, permisos)
-        return { ...item, items: subItems }
+        return {...item, items: subItems}
       }
       return item
     })
