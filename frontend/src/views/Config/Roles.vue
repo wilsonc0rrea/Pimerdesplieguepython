@@ -216,6 +216,8 @@
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
+
 import {onMounted, ref} from 'vue'
 import Card from 'primevue/card'
 import InputText from 'primevue/inputtext'

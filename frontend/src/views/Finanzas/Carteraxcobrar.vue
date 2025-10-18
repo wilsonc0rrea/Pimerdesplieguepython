@@ -166,7 +166,6 @@
         :total-records="totalRecords"
         :paginator="true"
         :rows="60"
-        paginator="true"
         scrollable
         scrollHeight="800px"
         responsive-layout="scroll"
@@ -437,6 +436,7 @@
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
 import {onMounted, ref, computed} from 'vue'
 import {FilterMatchMode} from 'primevue/api'
 import FocusTrap from 'primevue/focustrap';

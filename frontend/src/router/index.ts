@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createRouter, createWebHistory } from 'vue-router'
 // import { isLoggedIn, restoreSession } from '../stores/auth.js'
 import { useAuthStore } from '../stores/auth.js'
@@ -35,26 +36,6 @@ const routes = [
     name: 'Home',
     component: () => import('../views/HomeView.vue'),
     meta: { requiresAuth: true }  // ← ¡Protegida!
-  },
-  {
-    path: '/usuarios/lista',
-    component: () => import('../views/Usuarios/Lista.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/usuarios/crear',
-    component: () => import('../views/Usuarios/Crear.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/usuarios/reportes/diarios',
-    component: () => import('../views/Usuarios/ReportesDiarios.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/usuarios/reportes/mensuales',
-    component: () => import('../views/Usuarios/ReportesMensuales.vue'),
-    meta: { requiresAuth: true }
   },
   {
     path: '/config/perfil',

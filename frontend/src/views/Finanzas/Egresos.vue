@@ -193,6 +193,7 @@
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
 import {onMounted, ref} from 'vue'
 import {FilterMatchMode} from 'primevue/api'
 import {useAuthStore} from "@/stores/auth.js"

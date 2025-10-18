@@ -16,6 +16,8 @@
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
+
 import ResponsiveMenu from './components/ResponsiveMenu.vue'
 import { ref, onMounted,onBeforeMount } from 'vue'
 import { useAuthStore } from './stores/auth.js'

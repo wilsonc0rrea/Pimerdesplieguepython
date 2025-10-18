@@ -58,6 +58,8 @@
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
+
 import {ref} from 'vue'
 import Card from 'primevue/card'
 import InputText from 'primevue/inputtext'

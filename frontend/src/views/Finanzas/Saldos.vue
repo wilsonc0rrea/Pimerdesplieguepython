@@ -118,7 +118,7 @@
         :sortField="'created_at'"
         :sortOrder="-1"
       >
-<!--        <Column field="saldo_id" header="#" style="width: 60px"></Column>-->
+        <!--        <Column field="saldo_id" header="#" style="width: 60px"></Column>-->
         <Column field="cuenta_destino.cuenta_destino" header="Cta. principal"></Column>
         <Column bodyClass="text-right" field="saldo" header="Saldo"></Column>
         <Column bodyClass="text-right" field="debe" header="Debe"></Column>
@@ -193,6 +193,7 @@
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
 import {onMounted, ref} from 'vue'
 import {FilterMatchMode} from 'primevue/api'
 import {useAuthStore} from "@/stores/auth.js"

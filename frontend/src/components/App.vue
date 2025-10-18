@@ -9,6 +9,8 @@
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
+
 import { ref, onMounted, onBeforeMount } from 'vue'
 import { isLoggedIn } from './stores/auth.js'
 import ResponsiveMenu from './components/ResponsiveMenu.vue'

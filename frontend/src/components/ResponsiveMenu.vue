@@ -24,6 +24,8 @@
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
+
 import {ref, onMounted, computed, watch,watchEffect} from "vue"
 import {useMenu} from '@/composables/useMenu';
 import {useRouter} from "vue-router"

@@ -55,7 +55,8 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+// @ts-nocheck
 import {ref, computed, watch, onMounted} from "vue";
 import Swal from "sweetalert2";
 

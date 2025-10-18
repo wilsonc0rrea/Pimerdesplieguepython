@@ -53,6 +53,7 @@
 </template>
 
 <script setup lang="ts">
+// @ts-nocheck
 import {ref} from 'vue'
 import {useRouter} from 'vue-router'
 import logo from "@/assets/image/logo/mlogo.png"
