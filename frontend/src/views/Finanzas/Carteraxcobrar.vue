@@ -444,7 +444,7 @@ import {useAuthStore} from "@/stores/auth.js"
 import jsPDF from 'jspdf';
 import autoTable from "jspdf-autotable";
 import Swal from "sweetalert2";
-import logo from "@/assets/image/logo/mlogo.png"
+import logo from "@/assets/image/logo/mLogo.png"
 import Image from "primevue/image";
 
 const auth = useAuthStore()

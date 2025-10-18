@@ -114,7 +114,7 @@ import {FilterMatchMode} from 'primevue/api'
 import {useAuthStore} from "@/stores/auth.js"
 import Swal from "sweetalert2";
 import jsPDF from "jspdf";
-import logo from "@/assets/image/logo/mlogo.png"
+import logo from "@/assets/image/logo/mLogo.png"
 import autoTable from "jspdf-autotable";
 
 const auth = useAuthStore()

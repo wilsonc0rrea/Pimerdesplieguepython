@@ -29,7 +29,7 @@
 import {ref, onMounted, computed, watch,watchEffect} from "vue"
 import {useMenu} from '@/composables/useMenu';
 import {useRouter} from "vue-router"
-import logo from "@/assets/image/logo/mlogo.png"
+import logo from "@/assets/image/logo/mLogo.png"
 import Swal from "sweetalert2"
 import {useAuthStore} from "../stores/auth.js"
 

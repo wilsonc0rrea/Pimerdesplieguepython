@@ -67,7 +67,7 @@
 // @ts-nocheck
 import {ref, reactive} from 'vue'
 import {useRouter} from 'vue-router'
-import logo from "@/assets/image/logo/mlogo.png"
+import logo from "@/assets/image/logo/mLogo.png"
 import "@/assets/login.css"
 import Swal from 'sweetalert2'
 import {login} from '@/stores/auth.js' // 👈 ¡Importa la función login!
