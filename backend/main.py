@@ -222,7 +222,7 @@ def set_refresh_cookie(response: Response, token_value: str, expires_days: int):
         key="refresh_token",        # el navegador no permite leerla con JS (document.cookie), protegiendo contra XSS.
         value=token_value,
         httponly=True,              # No accesible desde JS (mitiga XSS)
-        secure=False,               # ⚠️ True en producción (HTTPS)
+        secure=TRUE,               # ⚠️ True en producción (HTTPS)
         samesite="strict",         # Evita CSRF; usa 'lax' si tu front está en otro dominio
         max_age=expires_days * 24 * 60 * 60,
         path="/api/refresh"       # Opcional: limita la cookie a esta ruta
