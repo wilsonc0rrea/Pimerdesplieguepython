@@ -449,19 +449,19 @@ const nombrcliente = ref('')
 const filters = ref({
   global: {value: null, matchMode: FilterMatchMode.CONTAINS},
 })
-
 const Puede = auth.permisos?.CReportes
-if(Puede.crear == false){
+
+if(Puede?.crear == false){
   mostrarBtnCrear.value = false
   mostrarBtnCerrar.value = false
 }
-if(Puede.editar == false){
+if(Puede?.editar == false){
   mostrarBtnUpdate.value = false
   mostrarBtnEditar.value = false
   mostrarBtnActivar.value = false
 }
 
-if(Puede.eliminar == false){
+if(Puede?.eliminar == false){
   mostrarBtnEliminar.value = false
 }
 
